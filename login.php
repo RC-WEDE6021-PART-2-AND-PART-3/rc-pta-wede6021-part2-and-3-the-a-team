@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             $error_message = "Wrong password!";
-        }
+        }        
     } else {
         $error_message = "No account found with this email.";
     }
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - Second Hand Fit</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .error-msg {
@@ -97,6 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <p style="text-align: center; margin-top: 20px;">
             Don't have an account? <a href="register.php">Register here</a>
+        </p>
+        
+        <p style="text-align: center; margin-top: 10px;">
+            <a href="admin_login.php">Admin Login</a>
         </p>
     </section>
 
