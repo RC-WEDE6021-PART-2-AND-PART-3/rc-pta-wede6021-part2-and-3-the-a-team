@@ -40,7 +40,7 @@
         <li><a href="login.php">Login</a></li>
     <?php endif; ?>
 
-    <li><a href="cart.html">Cart</a></li>
+    <li><a href="cart.php">Cart</a></li>
 
 </ul>
 
@@ -80,7 +80,7 @@
 
         <div class="style-grid">
 
-            <a href="shop.html">
+        <a href="men.html">>
 
                 <div class="card">
 
@@ -94,7 +94,7 @@
 
             </a>
 
-            <a href="shop.html">
+            <a href="accessories.html">
 
                 <div class="card">
 
@@ -108,7 +108,7 @@
 
             </a>
 
-            <a href="shop.html">
+            <a href="accessories.html">
 
                 <div class="card">
 
