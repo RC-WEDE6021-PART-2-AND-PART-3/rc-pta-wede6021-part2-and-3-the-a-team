@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,22 +20,29 @@
     <nav class="navbar">
 
         <div class="logo">
-            <a href="#">Second Hand Fit</a>
+            <a href="index.php">Second Hand Fit</a>
         </div>
 
         <ul class="navlist">
 
-            <li><a href="index.html">Home</a></li>
+    <li><a href="index.php">Home</a></li>
 
-            <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.html">Shop</a></li>
 
-            <li><a href="upload.html">Sell</a></li>
+    <li><a href="upload.html">Sell</a></li>
 
-            <li><a href="login.html">Login</a></li>
+    <?php if(isset($_SESSION['username'])): ?>
+        <!-- Show when user IS logged in -->
+        <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
+        <li><a href="logout.php">Logout</a></li>
+    <?php else: ?>
+        <!-- Show when user is NOT logged in -->
+        <li><a href="login.php">Login</a></li>
+    <?php endif; ?>
 
-            <li><a href="cart.html">Cart</a></li>
+    <li><a href="cart.html">Cart</a></li>
 
-        </ul>
+</ul>
 
     </nav>
 
@@ -48,8 +57,7 @@
             <h1>SECOND HAND STYLE</h1>
 
             <p>
-                Affordable fashion. Sustainable living.<br>
-                Buy and sell pre-loved clothing easily.
+                Affordable fashion. Sustainable living.<br> Buy and sell pre-loved clothing easily.
             </p>
 
             <a href="shop.html">
@@ -128,12 +136,8 @@
 
         <p>
 
-            Second Hand Fit helps people buy and sell
-            pre-loved clothing easily.
-            <br><br>
-
-            Our platform supports sustainable fashion
-            by giving clothes a second life.
+            Second Hand Fit helps people buy and sell pre-loved clothing easily.
+            <br><br> Our platform supports sustainable fashion by giving clothes a second life.
 
         </p>
 

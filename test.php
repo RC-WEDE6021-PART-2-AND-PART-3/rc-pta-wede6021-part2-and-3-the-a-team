@@ -1,5 +1,7 @@
 <?php
-include "DBConn.php";
+include "config/DBConn.php";
 
-echo "Connected!";
+if ($conn) {
+    echo "Database connected successfully!";
+}
 ?>
