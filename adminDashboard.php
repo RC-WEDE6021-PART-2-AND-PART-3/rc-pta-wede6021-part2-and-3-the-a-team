@@ -2,6 +2,11 @@
 session_start();
 include "DBConn.php";
 
+if (!isset($_SESSION["admin"])) {
+    header("Location: adminLogin.php");
+    exit();
+}
+
 // ADD USER
 if (isset($_POST["addUser"])) {
 
@@ -27,9 +32,43 @@ if (isset($_POST["updateUser"])) {
                   WHERE id=$id");
 }
 
-if (!isset($_SESSION["admin"])) {
-    header("Location: adminLogin.php");
-    exit();
+// ADD CLOTHING
+if (isset($_POST["addClothing"])) {
+
+    $clothingName = $_POST["clothingName"];
+    $brand = $_POST["brand"];
+    $description = $_POST["description"];
+    $price = $_POST["price"];
+    $quantity = $_POST["quantity"];
+
+    $imageName = $_FILES["image"]["name"];
+    move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $imageName);
+
+    $imagePath = "images/" . $imageName;
+
+    $conn->query("INSERT INTO tblClothing 
+        (clothingName, brand, description, price, quantity, image, status)
+        VALUES 
+        ('$clothingName', '$brand', '$description', '$price', '$quantity', '$imagePath', 'available')");
+}
+
+// UPDATE CLOTHING
+if (isset($_POST["updateClothing"])) {
+
+    $clothingID = $_POST["clothingID"];
+    $clothingName = $_POST["clothingName"];
+    $brand = $_POST["brand"];
+    $description = $_POST["description"];
+    $price = $_POST["price"];
+    $quantity = $_POST["quantity"];
+
+    $conn->query("UPDATE tblClothing 
+                  SET clothingName='$clothingName',
+                      brand='$brand',
+                      description='$description',
+                      price='$price',
+                      quantity='$quantity'
+                  WHERE clothingID=$clothingID");
 }
 
 // APPROVE USER
@@ -43,10 +82,17 @@ if (isset($_GET["delete"])) {
     $id = $_GET["delete"];
     $conn->query("DELETE FROM tblUser WHERE id=$id");
 }
+// DELETE CLOTHING
+if (isset($_GET["deleteClothing"])) {
+    $clothingID = $_GET["deleteClothing"];
+    $conn->query("DELETE FROM tblClothing WHERE clothingID=$clothingID");
+}
 
 // GET USERS
 $result = $conn->query("SELECT * FROM tblUser");
+$clothingResult = $conn->query("SELECT * FROM tblClothing");
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -112,6 +158,101 @@ if (isset($_GET["edit"])) {
         <a href="?approve=<?php echo $row["id"]; ?>">Approve</a> |
         <a href="?edit=<?php echo $row["id"]; ?>">Edit</a> |
         <a href="?delete=<?php echo $row["id"]; ?>">Delete</a>
+    </td>
+</tr>
+<?php } ?>
+
+</table>
+<hr>
+
+<h2>Manage Clothing</h2>
+
+<h3>Add New Clothing</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    Item Name:
+    <input type="text" name="clothingName" required>
+
+    Brand:
+    <input type="text" name="brand" required>
+
+    Description:
+    <input type="text" name="description" required>
+
+    Price:
+    <input type="number" name="price" step="0.01" required>
+
+    Quantity:
+    <input type="number" name="quantity" required>
+
+    Image:
+    <input type="file" name="image" required>
+
+    <button type="submit" name="addClothing">Add Clothing</button>
+</form>
+
+<br>
+
+<?php
+if (isset($_GET["editClothing"])) {
+    $clothingID = $_GET["editClothing"];
+    $editClothing = $conn->query("SELECT * FROM tblClothing WHERE clothingID=$clothingID")->fetch_assoc();
+}
+?>
+
+<?php if (isset($editClothing)) { ?>
+
+<h3>Edit Clothing</h3>
+
+<form method="POST">
+    <input type="hidden" name="clothingID" value="<?php echo $editClothing["clothingID"]; ?>">
+
+    Item Name:
+    <input type="text" name="clothingName" value="<?php echo $editClothing["clothingName"]; ?>" required>
+
+    Brand:
+    <input type="text" name="brand" value="<?php echo $editClothing["brand"]; ?>" required>
+
+    Description:
+    <input type="text" name="description" value="<?php echo $editClothing["description"]; ?>" required>
+
+    Price:
+    <input type="number" step="0.01" name="price" value="<?php echo $editClothing["price"]; ?>" required>
+
+    Quantity:
+    <input type="number" name="quantity" value="<?php echo $editClothing["quantity"]; ?>" required>
+
+    <button type="submit" name="updateClothing">Update Clothing</button>
+</form>
+
+<br>
+
+<?php } ?>
+
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Brand</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Action</th>
+</tr>
+
+<?php while($clothing = $clothingResult->fetch_assoc()) { ?>
+<tr>
+    <td><?php echo $clothing["clothingID"]; ?></td>
+    <td><img src="<?php echo $clothing["image"]; ?>" width="60"></td>
+    <td><?php echo $clothing["clothingName"]; ?></td>
+    <td><?php echo $clothing["brand"]; ?></td>
+    <td><?php echo $clothing["description"]; ?></td>
+    <td>R<?php echo $clothing["price"]; ?></td>
+    <td><?php echo $clothing["quantity"]; ?></td>
+    <td>
+        <a href="?editClothing=<?php echo $clothing["clothingID"]; ?>">Edit</a> |
+        <a href="?deleteClothing=<?php echo $clothing["clothingID"]; ?>" onclick="return confirm('Delete this clothing item?')">Delete</a>
     </td>
 </tr>
 <?php } ?>
