@@ -1,48 +1,114 @@
+<?php
+session_start();
+include "DBConn.php";
+
+$message = "";
+
+if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    $message = "Your cart is empty.";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION['cart'])) {
+
+    $fullName = $_POST['fullName'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+
+    $total = 0;
+
+    foreach ($_SESSION['cart'] as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+
+    $orderRef = "ORD" . rand(1000, 9999) . date("His");
+
+    $userID = 0;
+
+    $sqlOrder = "INSERT INTO tblOrder (userID, orderRef, totalAmount)
+                 VALUES ('$userID', '$orderRef', '$total')";
+
+    if ($conn->query($sqlOrder) === TRUE) {
+
+        $orderID = $conn->insert_id;
+
+        foreach ($_SESSION['cart'] as $item) {
+            $clothingID = $item['id'];
+            $quantity = $item['quantity'];
+            $price = $item['price'];
+
+            $sqlLine = "INSERT INTO tblOrderLine (orderID, clothingID, quantity, price)
+                        VALUES ('$orderID', '$clothingID', '$quantity', '$price')";
+            $conn->query($sqlLine);
+
+            $sqlUpdate = "UPDATE tblClothing 
+                          SET quantity = quantity - $quantity 
+                          WHERE clothingID = '$clothingID'";
+            $conn->query($sqlUpdate);
+        }
+
+        $_SESSION['cart'] = [];
+
+        $message = "Order placed successfully. Your reference number is: " . $orderRef;
+    } else {
+        $message = "Order could not be saved.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
     <title>Checkout</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-    <nav class="navbar">
+<nav class="navbar">
+    <div class="logo">
+        <a href="index.php">Second Hand Fit</a>
+    </div>
 
-        <div class="logo">
-            <a href="index.html">Second Hand Fit</a>
-        </div>
+    <ul class="navlist">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="shop.php">Shop</a></li>
+        <li><a href="cart.php">Cart</a></li>
+    </ul>
+</nav>
 
-    </nav>
+<section class="join">
+    <h2>Checkout</h2>
 
-    <section class="join">
+    <?php if ($message != ""): ?>
+        <p style="color:#ff4081; font-weight:bold;">
+            <?php echo $message; ?>
+        </p>
 
-        <h2>Checkout</h2>
+        <p>
+            <a href="shop.php">Continue Shopping</a>
+        </p>
+    <?php endif; ?>
 
-        <form>
+    <?php if (!isset($_SESSION['cart']) || !empty($_SESSION['cart'])): ?>
+        <form method="POST" action="checkout.php">
 
             <label>Full Name</label>
-            <input type="text">
+            <input type="text" name="fullName" required>
 
-            <label>Address</label>
-            <input type="text">
+            <label>Delivery Address</label>
+            <input type="text" name="address" required>
 
             <label>Phone Number</label>
-            <input type="text">
+            <input type="text" name="phone" required>
 
-            <button class="shop-btn">
+            <button class="shop-btn" type="submit">
                 Confirm Order
             </button>
 
         </form>
-
-    </section>
+    <?php endif; ?>
+</section>
 
 </body>
-
 </html>
