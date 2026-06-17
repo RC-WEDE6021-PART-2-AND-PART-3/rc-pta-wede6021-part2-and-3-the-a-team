@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Upload Item</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="index.html">Second Hand Fit</a>
+        </div>
+
+        <ul class="navlist">
+
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="cart.html">Cart</a></li>
+
+        </ul>
+
+    </nav>
+
+    <section class="join">
+
+        <h2>Upload Clothing Item</h2>
+
+        <form>
+
+            <label>Item Name</label>
+            <input type="text">
+
+            <label>Price</label>
+            <input type="text">
+
+            <label>Size</label>
+            <input type="text">
+
+            <label>Brand</label>
+            <input type="text">
+
+            <label>Condition</label>
+            <input type="text">
+
+            <label>Location</label>
+            <input type="text">
+
+            <label>Description</label>
+            <textarea></textarea>
+
+            <label>Upload Image</label>
+            <input type="file">
+
+            <button class="shop-btn">
+                Upload Item
+            </button>
+
+        </form>
+
+    </section>
+
+</body>
+
+</html>

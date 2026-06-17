@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="index.html">Second Hand Fit</a>
+        </div>
+
+    </nav>
+
+    <section class="join">
+
+        <h2>Checkout</h2>
+
+        <form>
+
+            <label>Full Name</label>
+            <input type="text">
+
+            <label>Address</label>
+            <input type="text">
+
+            <label>Phone Number</label>
+            <input type="text">
+
+            <button class="shop-btn">
+                Confirm Order
+            </button>
+
+        </form>
+
+    </section>
+
+</body>
+
+</html>
