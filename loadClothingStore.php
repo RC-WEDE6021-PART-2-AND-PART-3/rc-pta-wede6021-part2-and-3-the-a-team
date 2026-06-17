@@ -4,7 +4,7 @@ include "DBConn.php";
 /*
 Name: Relebogile Moralo
 Student Number: ST10399732
-Declaration: This code is my own work.
+
 */
 
 // Drop tables first
