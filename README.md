@@ -6,3 +6,5 @@ This update is to verify that changes are visible and syncing correctly between 
 
 This is the link to our youtube video (Here is the video ,https://youtu.be/-vxfgWauxnI)
 
+The finished product video is here (https://youtu.be/_VbRyEzAQX4)
+
