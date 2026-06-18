@@ -121,6 +121,7 @@ $sellerRequestResult = $conn->query("SELECT * FROM tblSellerRequest ORDER BY req
 <html>
 <head>
     <title>Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
 
     <style>
