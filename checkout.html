@@ -3,10 +3,122 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Second Hand Fit</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        
+        .navbar {
+            background: #000;
+            color: white;
+            padding: 15px 40px;
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .checkout-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .checkout-form,
+        .order-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: #111;
+        }
+        
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .total {
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .secure-box {
+            background: #f8f8f8;
+            border-left: 4px solid #000;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background: #333;
+        }
+        
+        @media(max-width:768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 
 </head>
 
@@ -20,28 +132,64 @@
 
     </nav>
 
-    <section class="join">
+    <div class="checkout-container">
 
-        <h2>Checkout</h2>
+        <div class="checkout-form">
 
-        <form>
+            <h2>Checkout</h2>
 
-            <label>Full Name</label>
-            <input type="text">
+            <p class="subtitle">
+                Complete your order and get your next favourite fit delivered.
+            </p>
 
-            <label>Address</label>
-            <input type="text">
+            <form>
 
-            <label>Phone Number</label>
-            <input type="text">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your full name">
 
-            <button class="shop-btn">
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter your email">
+
+                <label>Phone Number</label>
+                <input type="text" placeholder="Enter your phone number">
+
+                <label>Delivery Address</label>
+                <textarea placeholder="Enter your full delivery address"></textarea>
+
+                <button type="submit" class="checkout-btn">
                 Confirm Order
             </button>
 
-        </form>
+            </form>
 
-    </section>
+        </div>
+
+        <div class="order-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-item">
+                <span>Vintage Nike Hoodie</span>
+                <span>R450</span>
+            </div>
+
+            <div class="summary-item">
+                <span>Delivery</span>
+                <span>R80</span>
+            </div>
+
+            <div class="summary-item total">
+                <span>Total</span>
+                <span>R530</span>
+            </div>
+
+            <div class="secure-box">
+                Secure Checkout<br> Your information is protected and will only be used to process your order.
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 
