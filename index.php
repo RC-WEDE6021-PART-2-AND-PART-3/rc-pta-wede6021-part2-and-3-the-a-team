@@ -29,7 +29,7 @@
 
     <li><a href="shop.php">Shop</a></li>
 
-    <li><a href="upload.html">Sell</a></li>
+    <li><a href="upload.php">Sell</a></li>
 
   
 
@@ -211,6 +211,10 @@
 
         </ul>
 
+        <ul class="list4">
+            <li class="Top">Support</li>
+            <li><a href="messages.php">Contact Admin</a></li>
+        </ul>
     </footer>
 
 </body>

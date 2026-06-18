@@ -272,7 +272,7 @@ foreach ($cart_items as $item) {
         <ul class="navlist">
             <li><a href="index.php">Home</a></li>
             <li><a href="shop.php">Shop</a></li>
-            <li><a href="upload.html">Sell</a></li>
+            <li><a href="upload.php">Sell</a></li>
             <?php if(isset($_SESSION['username'])): ?>
                 <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -374,6 +374,10 @@ foreach ($cart_items as $item) {
             <li>Shipping</li>
             <li>Returns</li>
             <li>Size Guide</li>
+        </ul>
+        <ul class="list4">
+            <li class="Top">Support</li>
+            <li><a href="messages.php">Contact Admin</a></li>
         </ul>
     </footer>
 

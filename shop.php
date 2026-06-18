@@ -126,9 +126,49 @@ $result = $conn->query($sql);
 </section>
 
 <footer>
-    <h5>Second Hand Fit</h5>
-    <p>Buy and sell second-hand branded clothes online.</p>
-</footer>
+
+        <h5>Second Hand Fit</h5>
+
+        <ul class="list1">
+
+            <li class="Top">Shop</li>
+
+            <li>New Arrivals</li>
+
+            <li>Men</li>
+
+            <li>Women</li>
+
+        </ul>
+
+        <ul class="list2">
+
+            <li class="Top">Company</li>
+
+            <li>About Us</li>
+
+            <li>Contact Us</li>
+
+        </ul>
+
+        <ul class="list3">
+
+            <li class="Top">Help</li>
+
+            <li>Shipping</li>
+
+            <li>Returns</li>
+
+            <li>Size Guide</li>
+
+        </ul>
+
+        <ul class="list4">
+            <li class="Top">Support</li>
+            <li><a href="messages.php">Contact Admin</a></li>
+        </ul>
+    </footer>
+
 
 </body>
 </html>

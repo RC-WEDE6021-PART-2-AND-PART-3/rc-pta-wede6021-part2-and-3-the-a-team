@@ -46,13 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav class="navbar">
 
         <div class="logo">
-            <a href="index.html">Second Hand Fit</a>
+            <a href="index.php">Second Hand Fit</a>
         </div>
 
         <ul class="navlist">
 
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="cart.html">Cart</a></li>
+            <li><a href="shop.php">Shop</a></li>
+            <li><a href="cart.php">Cart</a></li>
 
         </ul>
 
@@ -101,6 +101,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
     </section>
+
+    <p>
+        Need help? <a href="messages.php">Contact Admin</a>
+    </p>
 
 </body>
 

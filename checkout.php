@@ -15,10 +15,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_SESSION['cart'])) {
     $phone = $_POST['phone'];
 
     $total = 0;
+    $stockError = false;
 
     foreach ($_SESSION['cart'] as $item) {
-        $total += $item['price'] * $item['quantity'];
+        $clothingID = $item['id'];
+        $cartQuantity = $item['quantity'];
+
+        $stockCheck = $conn->query("SELECT quantity, clothingName FROM tblClothing WHERE clothingID = '$clothingID'");
+        $stockRow = $stockCheck->fetch_assoc();
+
+    if ($cartQuantity > $stockRow['quantity']) {
+        $message = "Not enough stock for " . $stockRow['clothingName'] . ". Available stock: " . $stockRow['quantity'];
+        $stockError = true;
+        break;
     }
+
+    $total += $item['price'] * $item['quantity'];
+}
+
+if ($stockError == true) {
+    // stop checkout
+} else {
 
     $orderRef = "ORD" . rand(1000, 9999) . date("His");
 

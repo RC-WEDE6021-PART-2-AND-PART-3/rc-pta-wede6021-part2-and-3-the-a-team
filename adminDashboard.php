@@ -70,6 +70,15 @@ if (isset($_POST["updateClothing"])) {
                       quantity='$quantity'
                   WHERE clothingID=$clothingID");
 }
+// REPLY TO MESSAGE
+if (isset($_POST["replyMessage"])) {
+    $messageID = $_POST["messageID"];
+    $reply = $_POST["reply"];
+
+    $conn->query("UPDATE tblMessage 
+                  SET reply='$reply' 
+                  WHERE messageID=$messageID");
+}
 
 // APPROVE USER
 if (isset($_GET["approve"])) {
@@ -91,6 +100,9 @@ if (isset($_GET["deleteClothing"])) {
 // GET USERS
 $result = $conn->query("SELECT * FROM tblUser");
 $clothingResult = $conn->query("SELECT * FROM tblClothing");
+$messageResult = $conn->query("SELECT * FROM tblMessage ORDER BY messageDate DESC");
+$sellerRequestResult = $conn->query("SELECT * FROM tblSellerRequest ORDER BY requestDate DESC");
+
 ?>
 
 
@@ -259,5 +271,65 @@ if (isset($_GET["editClothing"])) {
 
 </table>
 
+
+<hr>
+
+<h2>Seller Requests</h2>
+
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Brand</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>Status</th>
+    <th>Date</th>
+</tr>
+
+<?php while($request = $sellerRequestResult->fetch_assoc()) { ?>
+<tr>
+    <td><?php echo $request["requestID"]; ?></td>
+    <td><?php echo $request["brand"]; ?></td>
+    <td><?php echo $request["description"]; ?></td>
+    <td>
+        <img src="images/<?php echo $request["image"]; ?>" width="80">
+    </td>
+    <td><?php echo $request["status"]; ?></td>
+    <td><?php echo $request["requestDate"]; ?></td>
+</tr>
+<?php } ?>
+</table>
+<hr>
+
+<h2>Customer and Seller Messages</h2>
+
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+    <th>Reply</th>
+    <th>Action</th>
+</tr>
+
+<?php while($msg = $messageResult->fetch_assoc()) { ?>
+<tr>
+    <td><?php echo $msg["messageID"]; ?></td>
+    <td><?php echo $msg["senderName"]; ?></td>
+    <td><?php echo $msg["senderEmail"]; ?></td>
+    <td><?php echo $msg["message"]; ?></td>
+    <td><?php echo $msg["reply"]; ?></td>
+    <td>
+        <form method="POST">
+            <input type="hidden" name="messageID" value="<?php echo $msg["messageID"]; ?>">
+            <input type="text" name="reply" required>
+            <button type="submit" name="replyMessage">Reply</button>
+        </form>
+    </td>
+</tr>
+<?php } ?>
+
+</table>
 </body>
 </html>
