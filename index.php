@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Second Hand Fit</title>
-
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -52,7 +52,9 @@
 
 
 
-        <div class="placeholder-img"></div>
+        <div class="background-image">
+            <img src="images/back1.jpg" alt="background" height="400" width="1600">
+        </div>
 
         <div class="hero-text">
 
@@ -88,11 +90,11 @@
 
         <div class="style-grid">
 
-        <a href="men.html">>
+        <a href="men.html">
 
                 <div class="card">
 
-                    <img src="https://placehold.co/300x300">
+                    <img src="images/men1.jpg" height="300" width="300">
 
                     <h3>Men</h3>
 
@@ -106,7 +108,7 @@
 
                 <div class="card">
 
-                    <img src="https://placehold.co/300x300">
+                    <img src="images/women.jpg" height="300" width="300">
 
                     <h3>Women</h3>
 
@@ -120,7 +122,7 @@
 
                 <div class="card">
 
-                    <img src="https://placehold.co/300x300">
+                    <img src="images/accessories.jpg" height="300" width="300">
 
                     <h3>Accessories</h3>
 
@@ -149,7 +151,7 @@
 
         </p>
 
-        <img src="https://placehold.co/400x400">
+        <img src="images/ourstory.jpg" height="400" width="400">
 
         <button class="ourstory">
             Our Story

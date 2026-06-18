@@ -85,6 +85,7 @@ foreach ($cart_items as $item) {
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart - Second Hand Fit</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
     <style>
         .cart-container {

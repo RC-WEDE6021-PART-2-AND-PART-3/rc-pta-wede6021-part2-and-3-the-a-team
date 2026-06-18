@@ -11,6 +11,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Shop - Second Hand Fit</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
 
     <style>

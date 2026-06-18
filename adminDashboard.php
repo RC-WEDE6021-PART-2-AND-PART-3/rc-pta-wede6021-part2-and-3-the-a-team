@@ -96,6 +96,17 @@ if (isset($_GET["deleteClothing"])) {
     $clothingID = $_GET["deleteClothing"];
     $conn->query("DELETE FROM tblClothing WHERE clothingID=$clothingID");
 }
+// APPROVE SELLER REQUEST
+if (isset($_GET["approveRequest"])) {
+    $requestID = $_GET["approveRequest"];
+    $conn->query("UPDATE tblSellerRequest SET status='approved' WHERE requestID=$requestID");
+}
+
+// REJECT SELLER REQUEST
+if (isset($_GET["rejectRequest"])) {
+    $requestID = $_GET["rejectRequest"];
+    $conn->query("UPDATE tblSellerRequest SET status='rejected' WHERE requestID=$requestID");
+}
 
 // GET USERS
 $result = $conn->query("SELECT * FROM tblUser");
@@ -108,6 +119,102 @@ $sellerRequestResult = $conn->query("SELECT * FROM tblSellerRequest ORDER BY req
 
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            background: black;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        h3 {
+            color: #ff4081;
+            margin-top: 25px;
+        }
+
+        form {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e91e63;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: black;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        a {
+            color: #ff4081;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            border-radius: 6px;
+        }
+
+        hr {
+            margin: 40px 0;
+        }
+    </style>
+</head>
 <body>
 
 <h2>Admin Dashboard</h2>
@@ -284,6 +391,7 @@ if (isset($_GET["editClothing"])) {
     <th>Image</th>
     <th>Status</th>
     <th>Date</th>
+    <th>Action</th>
 </tr>
 
 <?php while($request = $sellerRequestResult->fetch_assoc()) { ?>
@@ -296,6 +404,10 @@ if (isset($_GET["editClothing"])) {
     </td>
     <td><?php echo $request["status"]; ?></td>
     <td><?php echo $request["requestDate"]; ?></td>
+    <td>
+        <a href="?approveRequest=<?php echo $request["requestID"]; ?>">Approve</a> |
+        <a href="?rejectRequest=<?php echo $request["requestID"]; ?>">Reject</a>
+    </td>
 </tr>
 <?php } ?>
 </table>
