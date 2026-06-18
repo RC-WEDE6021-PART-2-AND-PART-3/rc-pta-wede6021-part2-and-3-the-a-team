@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Collection - Second Hand Fit</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .style {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .style-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            background: black;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .card h3 {
+            color: white;
+            margin: 10px 0;
+        }
+        
+        .card p {
+            color: #ff4081;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .card button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .card button:hover {
+            background: #e91e63;
+        }
+        
+        .product-location {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px;
+            color: #ff4081;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.php">Second Hand Fit</a>
+        </div>
+        <ul class="navlist">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="upload.html">Sell</a></li>
+            <?php session_start(); if(isset($_SESSION['username'])): ?>
+            <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
+            <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
+            <li><a href="login.php">Login</a></li>
+            <?php endif; ?>
+            <li><a href="cart.php">Cart</a></li>
+        </ul>
+    </nav>
+
+    <section class="style">
+        <h2>WOMEN'S COLLECTION</h2>
+        <div class="style-grid">
+
+            <!-- Product 1: Coloured Dress -->
+            <div class="card">
+                <img src="https://placehold.co/300x300" alt="Dress">
+                <h3>Summer Floral Dress</h3>
+                <p>R140</p>
+                <div class="product-location">📍 Durban</div>
+                <form method="POST" action="cart.php">
+                    <input type="hidden" name="product_id" value="women_dress_1">
+                    <input type="hidden" name="product_name" value="Summer Floral Dress">
+                    <input type="hidden" name="product_price" value="140">
+                    <input type="hidden" name="product_location" value="Durban">
+                    <input type="hidden" name="product_image" value="https://placehold.co/300x300">
+                    <button type="submit" name="add_to_cart">Add to Cart 🛒</button>
+                </form>
+            </div>
+
+            <!-- Product 2: Shorts -->
+            <div class="card">
+                <img src="https://placehold.co/300x300" alt="Shorts">
+                <h3>Denim High-Waist Shorts</h3>
+                <p>R350</p>
+                <div class="product-location">📍 Pretoria</div>
+                <form method="POST" action="cart.php">
+                    <input type="hidden" name="product_id" value="women_shorts_2">
+                    <input type="hidden" name="product_name" value="Denim High-Waist Shorts">
+                    <input type="hidden" name="product_price" value="350">
+                    <input type="hidden" name="product_location" value="Pretoria">
+                    <input type="hidden" name="product_image" value="https://placehold.co/300x300">
+                    <button type="submit" name="add_to_cart">Add to Cart 🛒</button>
+                </form>
+            </div>
+
+            <!-- Product 3: Crop Top -->
+            <div class="card">
+                <img src="https://placehold.co/300x300" alt="Crop Top">
+                <h3>Cotton Crop Top</h3>
+                <p>R90</p>
+                <div class="product-location">📍 Cape Town</div>
+                <form method="POST" action="cart.php">
+                    <input type="hidden" name="product_id" value="women_top_3">
+                    <input type="hidden" name="product_name" value="Cotton Crop Top">
+                    <input type="hidden" name="product_price" value="90">
+                    <input type="hidden" name="product_location" value="Cape Town">
+                    <input type="hidden" name="product_image" value="https://placehold.co/300x300">
+                    <button type="submit" name="add_to_cart">Add to Cart 🛒</button>
+                </form>
+            </div>
+
+        </div>
+        <a href="shop.html" class="back-link">← Back to Shop</a>
+    </section>
+
+    <footer>
+        <h5>Second Hand Fit</h5>
+        <ul class="list1">
+            <li class="Top">Shop</li>
+            <li>New Arrivals</li>
+            <li>Men</li>
+            <li>Women</li>
+        </ul>
+        <ul class="list2">
+            <li class="Top">Company</li>
+            <li>About Us</li>
+            <li>Contact Us</li>
+        </ul>
+        <ul class="list3">
+            <li class="Top">Help</li>
+            <li>Shipping</li>
+            <li>Returns</li>
+            <li>Size Guide</li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
