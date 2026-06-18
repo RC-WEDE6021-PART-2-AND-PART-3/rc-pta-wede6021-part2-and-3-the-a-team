@@ -15,13 +15,11 @@ if (!isset($_SESSION['cart'])) {
 
 // Handle Add to Cart
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-    $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    $product_location = $_POST['product_location'];
-    $product_image = $_POST['product_image'];
-    
-    // Check if product already in cart
+    $product_id = $_POST['clothingID'];
+    $product_name = $_POST['clothingName'];
+    $product_price = $_POST['price'];
+    $product_image = $_POST['image'];
+
     if (isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id]['quantity']++;
     } else {
@@ -29,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
             'id' => $product_id,
             'name' => $product_name,
             'price' => $product_price,
-            'location' => $product_location,
+            'location' => 'South Africa',
             'image' => $product_image,
             'quantity' => 1
         ];
     }
-    
+
     $_SESSION['cart_message'] = "✅ " . $product_name . " has been added to your cart!";
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    header("Location: cart.php");
     exit();
 }
 
@@ -273,8 +271,8 @@ foreach ($cart_items as $item) {
         </div>
         <ul class="navlist">
             <li><a href="index.php">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="upload.html">Sell</a></li>
+            <li><a href="shop.php">Shop</a></li>
+            <li><a href="upload.php">Sell</a></li>
             <?php if(isset($_SESSION['username'])): ?>
                 <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -298,7 +296,7 @@ foreach ($cart_items as $item) {
             <div class="empty-cart">
                 <h3>Your cart is empty!</h3>
                 <p>Looks like you haven't added any items yet.</p>
-                <a href="shop.html">← Continue Shopping</a>
+                <a href="shop.php">← Continue Shopping</a>
             </div>
         <?php else: ?>
             <form method="POST" action="">
@@ -347,13 +345,13 @@ foreach ($cart_items as $item) {
             
             <div class="cart-summary">
                 <h3>Total Amount: <span>R<?php echo number_format($total, 2); ?></span></h3>
-                <a href="checkout.html">
+                <a href="checkout.php">
                     <button class="checkout-btn">Proceed to Checkout →</button>
                 </a>
             </div>
             
             <div style="text-align: center;">
-                <a href="shop.html" class="continue-shopping">← Continue Shopping</a>
+                <a href="shop.php" class="continue-shopping">← Continue Shopping</a>
             </div>
         <?php endif; ?>
     </div>
@@ -376,6 +374,10 @@ foreach ($cart_items as $item) {
             <li>Shipping</li>
             <li>Returns</li>
             <li>Size Guide</li>
+        </ul>
+        <ul class="list4">
+            <li class="Top">Support</li>
+            <li><a href="messages.php">Contact Admin</a></li>
         </ul>
     </footer>
 

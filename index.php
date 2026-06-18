@@ -27,20 +27,20 @@
 
     <li><a href="index.php">Home</a></li>
 
-    <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.php">Shop</a></li>
 
-    <li><a href="upload.html">Sell</a></li>
+    <li><a href="upload.php">Sell</a></li>
 
-    <?php if(isset($_SESSION['username'])): ?>
-        <!-- Show when user IS logged in -->
-        <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['username']; ?>!</span></li>
-        <li><a href="logout.php">Logout</a></li>
-    <?php else: ?>
-        <!-- Show when user is NOT logged in -->
-        <li><a href="login.php">Login</a></li>
-    <?php endif; ?>
+  
 
-    <li><a href="cart.php">Cart</a></li>
+    <?php if(isset($_SESSION['user'])): ?>
+    <li><span style="color: #ff4081;">Welcome, <?php echo $_SESSION['user']; ?>!</span></li>
+    <li><a href="logout.php">Logout</a></li>
+<?php else: ?>
+    <li><a href="login.php">Login</a></li>
+    <li><a href="register.php">Register</a></li>
+    <li><a href="adminLogin.php">Admin</a></li>
+<?php endif; ?>
 
 </ul>
 
@@ -50,9 +50,17 @@
 
     <section class="hero">
 
+
+
         <div class="placeholder-img"></div>
 
         <div class="hero-text">
+
+        <?php if(isset($_SESSION['user'])): ?>
+        <p style="color:#ff4081; font-weight:bold;">
+        User <?php echo $_SESSION['user']; ?> is logged in
+        </p>
+        <?php endif; ?>
 
             <h1>SECOND HAND STYLE</h1>
 
@@ -60,7 +68,7 @@
                 Affordable fashion. Sustainable living.<br> Buy and sell pre-loved clothing easily.
             </p>
 
-            <a href="shop.html">
+            <a href="shop.php">
 
                 <button class="shop-btn">
                     Shop Now
@@ -203,6 +211,10 @@
 
         </ul>
 
+        <ul class="list4">
+            <li class="Top">Support</li>
+            <li><a href="messages.php">Contact Admin</a></li>
+        </ul>
     </footer>
 
 </body>
