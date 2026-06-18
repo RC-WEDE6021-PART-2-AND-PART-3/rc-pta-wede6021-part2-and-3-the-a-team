@@ -1,69 +1,270 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-
-    <title>Upload Item</title>
-
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Item | Second Hand Fit</title>
+    <link rel="stylesheet" href="style.css"> ```
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .navlist {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navlist a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .upload-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .upload-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .upload-header h1 {
+            margin-bottom: 10px;
+            color: #111;
+        }
+        
+        .upload-header p {
+            color: #666;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 140px;
+            resize: none;
+        }
+        
+        .upload-box {
+            border: 2px dashed #bbb;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+        
+        .upload-box input {
+            margin-top: 15px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: #000;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #333;
+        }
+        
+        @media(max-width:768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+    ```
 
 </head>
 
 <body>
 
     <nav class="navbar">
-
         <div class="logo">
             <a href="index.php">Second Hand Fit</a>
         </div>
 
+        ```
         <ul class="navlist">
-
             <li><a href="shop.html">Shop</a></li>
             <li><a href="cart.html">Cart</a></li>
-
         </ul>
+        ```
 
     </nav>
 
-    <section class="join">
+    <div class="upload-container">
 
-        <h2>Upload Clothing Item</h2>
+        ```
+        <div class="upload-header">
+            <h1>List Your Item</h1>
+            <p>Turn your pre-loved fashion into cash.</p>
+        </div>
 
         <form>
 
-            <label>Item Name</label>
-            <input type="text">
+            <div class="form-section">
+                <h3>Item Details</h3>
 
-            <label>Price</label>
-            <input type="text">
+                <div class="form-grid">
 
-            <label>Size</label>
-            <input type="text">
+                    <div>
+                        <label>Item Name</label>
+                        <input type="text" placeholder="Nike Vintage Hoodie">
+                    </div>
 
-            <label>Brand</label>
-            <input type="text">
+                    <div>
+                        <label>Brand</label>
+                        <input type="text" placeholder="Nike">
+                    </div>
 
-            <label>Condition</label>
-            <input type="text">
+                    <div>
+                        <label>Category</label>
+                        <select>
+                    <option>Select Category</option>
+                    <option>Hoodies</option>
+                    <option>T-Shirts</option>
+                    <option>Jackets</option>
+                    <option>Jeans</option>
+                    <option>Sneakers</option>
+                </select>
+                    </div>
 
-            <label>Location</label>
-            <input type="text">
+                    <div>
+                        <label>Price (R)</label>
+                        <input type="number" placeholder="500">
+                    </div>
 
-            <label>Description</label>
-            <textarea></textarea>
+                </div>
+            </div>
 
-            <label>Upload Image</label>
-            <input type="file">
+            <div class="form-section">
+                <h3>Specifications</h3>
 
-            <button class="shop-btn">
-                Upload Item
-            </button>
+                <div class="form-grid">
+
+                    <div>
+                        <label>Size</label>
+                        <select>
+                    <option>Select Size</option>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                </select>
+                    </div>
+
+                    <div>
+                        <label>Condition</label>
+                        <select>
+                    <option>Select Condition</option>
+                    <option>Brand New</option>
+                    <option>Like New</option>
+                    <option>Good</option>
+                    <option>Fair</option>
+                </select>
+                    </div>
+
+                    <div>
+                        <label>Location</label>
+                        <input type="text" placeholder="Pretoria">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Description</h3>
+
+                <textarea placeholder="Describe your item, condition, flaws, fit and styling details..."></textarea>
+            </div>
+
+            <div class="form-section">
+                <h3>Photos</h3>
+
+                <div class="upload-box">
+                    <h4>Upload Product Images</h4>
+                    <p>Drag & Drop images here or browse your files.</p>
+                    <input type="file" multiple>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+        Publish Listing
+    </button>
 
         </form>
+        ```
 
-    </section>
+    </div>
 
 </body>
 
